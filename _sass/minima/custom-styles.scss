@@ -1,0 +1,141 @@
+/*-----------------------------------*/
+/*--- IMPORT STYLES FOR Mortpages ---*/
+@import "minima/Nighthawkpages-styles";   
+
+/*-----------------------------------*/
+/*--- CUSTOM STYLES FOR Nighthawkpages ---*/
+// Uncomment out the following themes to use them 
+
+// @import "minima/hacker/jekyll-theme-hacker"; //Hacker theme 
+// @import "minima/minimal-mistakes"; //Minimal Mistakes theme 
+// @import "minima/monophase/main"; //Monophase theme 
+// @import "minima/leaf/_leaf";  //Leaf theme 
+// @import "minima/hamilton/main"; //Hamilton theme
+
+/*-----------------------------------*/
+/*----- ADD YOUR STYLES BELOW -------*/
+
+// If you want to turn off dark background for syntax highlighting, comment or delete the below line.
+// If you want to use dark themes uncomment out the following lines
+@import "minima/Nighthawkpages-dracula-highlight"; 
+@import "minima/Dark_Mode"; // Dracula Highlight recommended for dark mode
+
+// FOR HAMILTON
+// @import "minima/hamilton/skins/daylight";
+// @import "minima/hamilton/skins/midnight";
+// @import "minima/hamilton/skins/sunrise";
+// @import "minima/hamilton/skins/sunset"
+
+@mixin button {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    background-color: #21807c;
+    border: 3px solid black;
+    font-size: 1.5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    grid-column: span 1;
+    grid-row: span 1;
+
+    // Creates smooth animation effect
+    transition: all 0.5s; 
+  }
+
+  /* define class for redifined button */
+  .button {
+    @include button;
+  }
+
+   /* darkens the background color on hover to create a selecting effect */
+  .button:hover {
+    background-image: linear-gradient(to right, #04064b, #07052a);
+  }
+
+  /* "row style" is flexible size and aligns pictures in center */
+  .row {
+    align-items: center;
+    display: flex;
+  }
+
+  /* "column style" is one-third of the width with padding */
+  .column {
+    flex: 16.66%;
+    padding: 3px;
+  }
+  
+// STYLING FOR CALCULATOR
+  /* class to create the calculator's container; uses CSS grid dsiplay to partition off buttons */
+  .calculator-container { 
+    width: 90vw; /* this width and height is specified for mobile devices by default */
+    height: 80vh;
+    margin: 0 auto;
+  
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* fr is a special unit; learn more here: https://css-tricks.com/introduction-fr-css-unit/  */
+    grid-template-rows: 0.5fr repeat(5, 1fr);
+    gap: 10px 10px;
+  }
+  
+  @media (min-width: 600px) { 
+    .calculator-container {
+        width: 40vw;
+        height: 100vh;
+    }
+  }
+
+h1.project-name {
+    color: white;
+}
+
+
+h1, h2, h3, h4 {
+  text-align: center;
+  background: linear-gradient(to right, #35bde7, #0064cf); 
+        -webkit-text-fill-color: transparent; 
+        -webkit-background-clip: text;
+}
+
+p {
+  text-align: center;
+  color: white;
+}
+
+
+.page-header {
+  background-image: linear-gradient(to top right, #04064b, #07052a);
+}
+
+
+
+  /* styling for the calculator number button */
+  .calculator-number {
+    @extend .button;
+    color: white;
+    background-color: #3f84b8;
+  }
+
+  /* styling for the calculator operation button */
+  .calculator-operation {
+    @extend .button;
+    color: white;
+    background-color: #3f84b8;
+  }
+  
+  /* styling for the calculator clear button */
+  .calculator-clear {
+    @extend .button;
+    color: white;
+    background-color: #e68b1c;
+  }
+  
+  /* styling for the calculator equals button */
+  .calculator-equals {
+    @extend .button;
+    color: white;
+    background-color: #e70f0f;
+  }
+

@@ -1,0 +1,11 @@
+# CSP course meta data
+Unit1:
+  title: CSSE1
+  description:  Things that I did in Trimester one of CSSE.
+  start: 0
+  end: 8
+Unit2:
+  title: CSSE 2
+  description: Things that I am working on or have accomplished in CSSE Trimester 2.
+  start: 9
+  end: 18
