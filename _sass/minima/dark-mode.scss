@@ -1,3 +1,7 @@
+:root {
+    --default-canvas-filter: invert(100%);
+}
+
 $high-emph: rgba(white, 0.87);
 $med-emph: rgba(white, 0.69); 
 $low-emph: rgba(white, 0.38);
@@ -8,7 +12,7 @@ $overlay-light: mix($dark-grey, white, 86%);
 
 html, body, input, textarea, select, button {   
   color: $high-emph !important;
-  background: linear-gradient(to right, #001325, #000d1a) !important;
+  background-color: $dark-grey !important;
 }
 
 a {
@@ -24,6 +28,7 @@ a:hover {
 }
 
 .site-nav {
+    background-color: $dark-grey;
     border-color: $overlay-light;
 }
 
@@ -76,11 +81,9 @@ table td{
     filter: brightness(80%);
 }
 
-/*
 canvas {
-    filter: invert(100%);
+    filter: var(--default-canvas-filter);
 }
-*/
 
 .post-list > li > div {
     box-shadow: none !important;
@@ -102,5 +105,5 @@ li .post-meta-description {
 }
 
 .search-results-list-item .search-result-title {
-    color: rgb(0, 0, 0) !important;
+    color: cornflowerblue !important;
 }
