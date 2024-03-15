@@ -185,12 +185,11 @@ courses: { compsci: {week: 9} }
       } else if (currentSpeed === 3) { // if walking, go to running
         mario.startRunning();
       }
-    } else {
-      // move left
-      mario.startPuffing();
-    }
+      } else if (currentSpeed === 0) { // if running, go to puffing
+        mario.startPuffing();
+      }
   });
-
+  
   //stop animation on window blur
   window.addEventListener("blur", () => {
     mario.stopAnimate();

@@ -3,7 +3,7 @@ description: "August 2023 to June 2024"
 owner_name: Pranav Santhosh
 github_username: SanPranav
 github_repo: "PranavSan"
-baseurl: "/SanPranavStudent2"
+baseurl: "/SanPranavStudent_2"
 remote_theme: jekyll/minima
 minima:
   social_links:
