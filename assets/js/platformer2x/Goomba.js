@@ -1,5 +1,6 @@
 import Character from './Character.js';
 import GameEnv from './GameEnv.js';
+import playGoombaDeath from './Audio.js';
 import GameControl from './GameControl.js';
 
 export class Goomba extends Character {

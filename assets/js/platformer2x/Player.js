@@ -283,6 +283,33 @@ export class Player extends Character {
             this.movement.left = true;
             this.movement.right = true;
         }
+// Gravestone collision check
+        if (this.collisionData.touchPoints.other.id === "Portal") {
+            // Collision with the left side of the gravestone
+            if (this.collisionData.touchPoints.other.left) {
+                this.movement.right = false;
+            }
+            // Collision with the right side of the gravestone
+            if (this.collisionData.touchPoints.other.right) {
+                this.movement.left = false;
+            }
+            // Collision with the top of the player
+            if (this.collisionData.touchPoints.other.bottom) {
+                this.x = this.collisionData.touchPoints.other.x;
+                this.gravityEnabled = false; // stop gravity
+                // Pause for two seconds
+                setTimeout(() => {   
+                    this.gravityEnabled = true;
+                    setTimeout(() => { // move to end of screen for end of game detection
+                        this.x = GameEnv.innerWidth + 1;
+                    }, 500);
+                }, 500);
+            }
+        } else {
+            // Reset movement flags if not colliding with a tree
+            this.movement.left = true;
+            this.movement.right = true;
+        }
 
         // Goomba collision check
         // Checks if collision touchpoint id is either "goomba" or "flyingGoomba"
@@ -376,7 +403,7 @@ export class Player extends Character {
             // dash action on
             if (this.isKeyActionDash(key)) {
                 GameEnv.dash = true;
-                this.canvas.style.filter = 'invert(1)';
+                this.canvas.style.filter = 'invert(1)'; 
             }
             // parallax background speed starts on player movement
             if (this.isKeyActionLeft(key) && this.x > 2) {

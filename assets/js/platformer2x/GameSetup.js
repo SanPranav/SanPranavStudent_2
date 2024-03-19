@@ -12,8 +12,11 @@ import JumpPlatform from './JumpPlatform.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
 import Tree from './Tree.js';
+import Portal from './Portal.js';
 import Goomba from './Goomba.js';
 import FlyingGoomba from './FlyingGoomba.js';
+import FlyingEye from './FlyingEye.js';
+import BlackCircle from './BlackCircle.js';
 import BlockPlatform from './BlockPlatform.js';
 import Mushroom from './Mushroom.js';
 import Coin from './Coin.js';
@@ -170,6 +173,7 @@ const GameSetup = {
       obstacles: {
         tube: { src: "/images/platformer/obstacles/tube.png" },
         coin: { src: "/images/platformer/obstacles/coin.png"},
+        Portal: { src: "/images/platformer/obstacles/Portal.png"},
         tree: { src: "/images/platformer/obstacles/tree.png"}
       },
       platforms: {
@@ -195,6 +199,7 @@ const GameSetup = {
         mountains: { src: "/images/platformer/backgrounds/mountains.jpg" },
         clouds : { src: "/images/platformer/backgrounds/clouds.png"},
         space: { src: "/images/platformer/backgrounds/planet.jpg" },
+        creepy: {src: "/images/platformer/backgrounds/creepy.png"},
         castles: { src: "/images/platformer/backgrounds/castles.png" },
         loading: { src: "/images/platformer/backgrounds/greenscreen.png" },
         complete: { src: "/images/platformer/backgrounds/OneStar.png" },
@@ -261,6 +266,20 @@ const GameSetup = {
           scaleSize: 60,
           speedRatio: 0.7,
         },
+        BlackCircle: {
+          src: "/images/platformer/sprites/BlackCircle.png",
+          width: 401,
+          height: 268,
+          scaleSize: 60,
+          speedRatio: 0.7,
+        },
+        FlyingEye: {
+          src: "/images/platformer/sprites/FlyingEye.png",
+          width: 1920,
+          height: 1166,
+          scaleSize: 150,
+          speedRatio: 0.8,  
+        },
         mushroom: {
           src: "/images/platformer/platforms/mushroom.png",
           width: 200,
@@ -310,7 +329,8 @@ const GameSetup = {
           "Fun Fact #6" : "Mario's original name was Jumpman.",
           "Fun Fact #7" : "March 10th is known as Mario Day because the abbreviation for March 10th (Mar10) looks like Mario.",
           "Fun Fact #8" : " Mario was originally a carpenter, not a plumber.",
-          "Fun Fact #9" : " There are actually lyrics to the Mario theme song."
+          "Fun Fact #9" : " There are actually lyrics to the Mario theme song.",
+          "Fun Fact #10": "Hey, I wrote that Line!"
           }
         function generate(){
           var nums = Object.keys(fun_facts);
@@ -416,6 +436,66 @@ const GameSetup = {
         ];
         // Space Game Level added to the GameEnv ...
         new GameLevel( {tag: "space", callback: this.playerOffScreenCallBack, objects: spaceGameObjects} );
+
+        const horrorgameObjects = [
+          // GameObject(s), the order is important to z-index...
+          { name: 'creepy', id: 'background', class: Background, data: this.assets.backgrounds.creepy },
+          { name: 'grass', id: 'platform', class: Platform, data: this.assets.platforms.grass },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.2, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.2368, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.2736 , yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.3104, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.3472, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.384, yPercentage: 0.76 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.4208, yPercentage: 0.70 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.5090, yPercentage: 0.64 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.5642, yPercentage: 0.34 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.5274, yPercentage: 0.34 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.4906, yPercentage: 0.34 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 1 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.94 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.88 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.76 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.70 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.64 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.58 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.52 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.46 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.40 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.34 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.28 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.22 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.16 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.1 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.6, yPercentage: 0.06 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 1 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.94 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.88 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.82 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.76 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.70 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.64 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.58 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.52 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.46 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.40 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.34 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.28 },
+          { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.22 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.16 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.1 },
+          //{ name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.75, yPercentage: 0.06 },
+          { name: 'BlackCircle', id: 'BlackCircle', class: BlackCircle, data: this.assets.enemies.BlackCircle, xPercentage: 0.2, minPosition: 0.05},
+          { name: '', id: 'BlackCircle', class: BlackCircle, data: this.assets.enemies.BlackCircle, xPercentage:  0.5, minPosition: 0.3 },
+          { name: 'BlackCircle', id: 'BlackCircle', class: BlackCircle, data: this.assets.enemies.BlackCircle, xPercentage:  0.7, minPosition: 0.1 },
+          //{ name: 'BlackCircleSpecial', id: 'BlackCircle', class: Goomba, data: this.assets.enemies.goomba, xPercentage:  0.75, minPosition: 0.5 }, //this special name is used for random event 2 to make sure that only one of the Goombas ends the random event
+          { name: 'monkey', id: 'player', class: Player, data: this.assets.players.mario },
+          { name: 'Portal', id: 'Portal', class: Portal, data: this.assets.obstacles.Portal },
+          { name: 'complete', id: 'background', class: BackgroundTransitions,  data: this.assets.backgrounds.complete },
+        ];
+        // Horror Game Level added to the GameEnv ...
+        new GameLevel( {tag: "horrorgame", callback: this.playerOffScreenCallBack, objects: horrorgameObjects} );
 
         // Game Over Level definition...
         const endGameObjects = [
